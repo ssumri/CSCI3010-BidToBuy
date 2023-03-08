@@ -1,0 +1,6 @@
+Userid, buyerOrSeller, address
+ebayuser1,true,123 Main St,1234
+ebayuser2,false,456 Oak Ave,5678
+ebayuser3,true,789 Elm Rd,9012
+ebayuser4,false,555 Maple Ln,3456
+ebayuser5,true,777 Cherry Blvd,7890

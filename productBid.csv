@@ -1,0 +1,6 @@
+ProductId,bought,ProductCategory,highestBid,UserId,
+123,true,1,50.00,ebayuser1
+456,false,2,25.00,ebayuser2
+789,true,3,75.00,ebayuser3
+101112,false,4,15.00,ebayuser4
+131415,true,5,100.00,ebayuser5
