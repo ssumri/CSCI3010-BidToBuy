@@ -13,10 +13,11 @@ class Driver
 private:
     vector<User> currentUsers;
     vector<Product> currentProducts;
+    Driver();
 
 public:
     void startEbay();
-    Driver();
+    // Driver();
     static Driver &GetInstance() // Singleton
     {
         // only instantiated for the first time

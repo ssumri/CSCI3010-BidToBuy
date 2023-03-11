@@ -3,72 +3,66 @@
 
 #include <vector>
 #include <string>
-// Electronics, Furniture, Clothing, Jewelry, Games
-
 using namespace std;
+// Electronics, Furniture, Clothing, Jewelry, Games
+enum class ProductCategory
+{
+    Electronics,
+    Furniture,
+    Clothing,
+    Jewelry,
+    Games
+};
 class Product
 {
 private:
+    double price;
+    double highestBid;
+    string name;
+
 public:
     Product();
-    ~Product();
-    double getCurrentBid();   // returns the current highest bid for this product
-    void setCurrentBid();     // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
-    double getProductPrice(); // returns the price of the product
-    string getProductName();  // returns the name of the product
-
-    enum class ProductCategory // used to define all the category of products sellers can sell on this app.
-    {
-        Electronics,
-        Furniture,
-        Clothing,
-        Jewelry,
-        Games
-    };
+    Product(int p, int hb, string n_);
+    // ~Product(); // not sure why we would need this
+    double getCurrentBid();        // returns the current highest bid for this product
+    void setCurrentBid(double nb); // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
+    double getProductPrice();      // returns the price of the product
+    string getProductName();       // returns the name of the product
 };
+
 class Electronics : public Product
 {
 private:
+    ProductCategory category = ProductCategory::Electronics;
     string electronicType;
 };
+
 class Furniture : public Product
 {
 private:
+    ProductCategory category = ProductCategory::Furniture;
     string furnitureType;
 };
+
 class Clothing : public Product
 {
 private:
+    ProductCategory category = ProductCategory::Clothing;
     int size;
 };
+
 class Jewelry : public Product
 {
 private:
+    ProductCategory category = ProductCategory::Jewelry;
     string metal;
 };
+
 class Games : public Product
 {
 private:
+    ProductCategory category = ProductCategory::Games;
     string console;
 };
-
-// used to
-// define all the category of products sellers can sell on this app. You may
-// add as many categories you like. There should be at least enough of them to
-// cover all the classes you created as part of the products inheritance
-// hierarchy.
-Product *productFactory(Clothing::ProductCategory pc)
-{
-    switch (pc)
-    {
-        // case ProductCategory::Clothing:
-        //     return new Clothing(...);
-        // case ProductCategory::Furniture:
-        //     return new Furniture(...);
-        //     .
-        //         .
-        //         .default : return new Product(....);
-    }
-}
 
 #endif

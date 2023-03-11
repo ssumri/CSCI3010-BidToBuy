@@ -6,12 +6,12 @@
 #include "Product.h"
 
 using namespace std;
-
+static vector<string> messages = {};
 class User
 {
 public:
     User(bool buyerorseller); // true for seller false for buyer
-    ~User();
+    // ~User();
     // void setIsSeller(); // false for buyer true for setter
     bool getisSeller();           // false for buyer true for setter
     string getUserId();           // returns user id
@@ -34,35 +34,47 @@ private:
 class Seller : public User
 {
 public:
-    Seller();
-    void addProductForSale(); // adds a product to the seller's list of products
-    double getBalance();      // returns the balance of the seller
-    void getSellerOverview(); // returns a list of products for sale
+    Seller(string name_) : User(true)
+    {
+
+        balance = 0;
+        products = {};
+        messages = {};
+    }
+    void addProductForSale(Product p); // adds a product to the seller's list of products
+    double getBalance();               // returns the balance of the seller
+    void getSellerOverview();          // returns a list of products for sale
     // requires << operator overload for seller and products
-    bool messageSend(User b, Product p, string message);    // sends a message to a buyer
-    bool messageRespond(User b, Product p, string message); // responds to a message from a buyer
+
     // define operator overload for == in terms of products
 
 private:
-    static vector<string> messages;
+    vector<Product> products;
+    double balance;
     // add more fields as applicable
 };
 
 class Buyer : public User
 {
 public:
-    Buyer();
+    Buyer(string name_) : User(false)
+    {
+
+        balance = 0;
+        products = {};
+        messages = {};
+    }
     void addBidToProduct();  // places a bid
     double getBalance();     // returns the balance of the buyer
-    void getBuyerOverview(); // returns a list of products for sale
+    void getBuyerOverview(); // returns a list of items bought by user
     // requires << operator overload for seller and products
-    bool messageSend(User s, Product p, string message);    // sends a message to a seller
-    bool messageRespond(User s, Product p, string message); // responds to a message from a seller
+
     // define operator overload for == in terms of products
 
 private:
     // add more fields as applicable
-    static vector<string> messages;
+    vector<Product> products;
+    double balance;
 };
 
 #endif
