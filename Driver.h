@@ -1,5 +1,5 @@
-#define _DRIVER_H_
 #ifndef _DRIVER_H_
+#define _DRIVER_H_
 
 #include <vector>
 #include <string>
@@ -29,8 +29,8 @@ public:
     static vector<Buyers> getBuyers();        // return all buyers in a vector
     static void printBuyerStats();            // print all buyers
     static void printSellerStats();           // print all sellers
-    static vector<Sellers> getSellers();      // return all sellers in a vector
+    static vector<Seller> getSellers();       // return all sellers in a vector
     static void addProducts();                // add a product to the currentProducts vector
-}
+};
 
 #endif
