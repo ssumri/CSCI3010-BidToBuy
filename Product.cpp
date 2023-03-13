@@ -4,21 +4,23 @@
 #include <fstream>
 using namespace std;
 
-Product::Product(int pid_, int owner_id, string prodName, ProductCategory category_, string cond_, double price_, double highestb_)
+
+
+
+Product::Product(string prodName_, ProductCategory category_, string cond_, double price_, double highestb_)
 {
-    productID = pid_;
-    ownerID = owner_id;
-    prodName = n_;
-    category = categoty_;
+    productID = ++this->pid;
+    prodName = prodName_;
+    category = category_;
     condition = cond_;
     price = price_;
     highestBid = highestb_;
 }
 
+
 Product::Product()
 {
-    productID = generatePid();
-    ownerID = -1;
+    productID = ++this->pid;
     prodName = "";
     category = ProductCategory::Other;
     condition = "New";
@@ -31,12 +33,14 @@ double Product::getCurrentBid()
     return highestBid;
 }
 
-void Product::setCurrentBid(double nb)
+bool Product::setCurrentBid(double nb)
 {
     if (nb > highestBid)
     {
         highestBid = nb;
+        return true;
     }
+    return false;
 }
 
 double Product::getProductPrice()
@@ -46,15 +50,15 @@ double Product::getProductPrice()
 
 string Product::getProductName()
 {
-    return name;
+    return prodName;
 }
 
-void setProductCategory(ProductCategory category_)
+void Product::setProductCategory(ProductCategory category_)
 {
     category = category_;
 }
 
-void setNewOwner(int userID)
+void Product::setNewOwner(int userID)
 {
     ownerID = userID;
 }

@@ -13,8 +13,9 @@ Seller::Seller(string name_) : User()
 {
 
     balance = 0.0;
-    // name = name_;
-    // products = vector<Product>();
+    name = name_;
+    setName(name_);
+    products = vector<Product>();
 }
 
 // Seller::~Seller()
@@ -27,15 +28,6 @@ void Seller::addProductForSale(Product p)
     products.push_back(p);
 }
 
-string Seller::getName()
-{
-    return "Ethan";
-}
-
-int Seller::getPhoneNumber()
-{
-    return 12345;
-}
 
 double Seller::getBalance()
 {
@@ -45,12 +37,13 @@ double Seller::getBalance()
 void Seller::getSellerOverview()
 {
     cout << "Seller Overview" << endl;
-    cout << "Name: " << getName() << endl;
-    cout << "Phone Number: " << getPhoneNumber() << endl;
-    cout << "Balance: " << getBalance() << endl;
+    cout << "Name: " << this->getName() << endl;
+    cout << "Phone Number: " << this->getPhoneNumber() << endl;
+    cout << "Balance: " << this->getBalance() << endl;
     cout << "Products for Sale: " << endl;
-    // for (int i = 0; i < products.size(); i++)
-    // {
-    //     cout << "Product " << i << ": " << products[i].getName() << endl;
-    // }
+    for (int i = 0; i < products.size(); i++)
+    {
+        cout << "Product " << i << ": " << products[i].getProductName() << endl;
+    }
 }
+

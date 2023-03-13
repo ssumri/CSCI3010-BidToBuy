@@ -19,8 +19,6 @@ public:
     void addProductForSale(Product p); // adds a product to the seller's list of products
     double getBalance();               // returns the balance of the seller
     void getSellerOverview();          // returns a list of products for sale
-    string getName();
-    int getPhoneNumber();
     // requires << operator overload for seller and products
 
     // define operator overload for == in terms of products
@@ -28,6 +26,8 @@ public:
 private:
     vector<Product> products;
     double balance;
+    string name;
+    
     // add more fields as applicable
 };
 

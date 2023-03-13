@@ -31,6 +31,7 @@ private:
     string name;
     int phoneNum;
     double balance;
+    static int uid;
 };
 
 #endif

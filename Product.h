@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 using namespace std;
+
 // Electronics, Furniture, Clothing, Jewelry, Games
 enum class ProductCategory
 {
@@ -17,6 +18,8 @@ enum class ProductCategory
 
 class Product
 {
+static int pid;
+static int oid;
 private:
     double price;
     double highestBid;
@@ -25,17 +28,20 @@ private:
     int ownerID;
     string condition;
     ProductCategory category;
+    
 
 public:
     Product();
-    Product(int pid_, int owner_id, string prodName, ProductCategory category_, string cond_, double price_, double highestb_);
+    Product(string prodName, ProductCategory category_, string cond_, double price_, double highestb_);
     // ~Product(); // not sure why we would need this
     double getCurrentBid();        // returns the current highest bid for this product
-    void setCurrentBid(double nb); // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
+    bool setCurrentBid(double nb); // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
     double getProductPrice();      // returns the price of the product
     string getProductName();       // returns the name of the product
     void setProductCategory(ProductCategory category_);
     void setNewOwner(int userID);
+    
+    
 };
 
 class Electronics : public Product

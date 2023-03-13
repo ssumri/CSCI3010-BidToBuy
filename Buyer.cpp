@@ -5,22 +5,24 @@
 
 using namespace std;
 
-Buyer::Buyer(string name_) : User(false)
+Buyer::Buyer(bool buyerseller, string name_) : User(buyerseller)
 {
 
+    name = name_;
     balance = 0;
+    setName(name_);
     // products = vector<Product>();
     // messages = vector<string>();
 }
 
-void Buyer::addBidToProduct()
+bool Buyer::addBidToProduct(Product p, double bid)
 {
-    return;
+    return p.setCurrentBid(bid);
 }
 
 double Buyer::getBalance()
 {
-    return 0.0;
+    return balance;
 }
 
 void Buyer::getBuyerOverview()

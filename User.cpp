@@ -42,15 +42,13 @@ void messageRecieve()
 User::User(bool bors)
 {
     isSeller = bors;
-    userID = 0; // use a static int to keep track of this , userID++;
-    name = "";
+    userID = ++uid; // use a static int to keep track of this , userID++;
 }
 
 User::User()
 {
     isSeller = true;
-    userID = 0;
-    name = "Rahul";
+    userID = ++uid;
 }
 
 // User::~User()
