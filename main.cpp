@@ -37,9 +37,9 @@ int main()
     // Driver &d = Driver::GetInstance();
     // Product p = new Product(1.4, 2.5, "nam");
     // cout << p.getProductName() << endl;
-    Buyer b = Buyer(false,"Sami");
+    Seller s = Seller(true,"Sami");
     // cout << s.getName() << endl;
-    cout << b.getName() << endl;
+    cout << s.getName() << endl;
     // User u;
     // u.setName("Rahul");
     

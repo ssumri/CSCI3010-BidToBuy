@@ -9,7 +9,7 @@ using namespace std;
 
 // class User;
 
-Seller::Seller(string name_) : User()
+Seller::Seller(bool sellerorbuyer, string name_) : User(sellerorbuyer)
 {
 
     balance = 0.0;

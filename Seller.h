@@ -15,7 +15,7 @@ using namespace std;
 class Seller : public User
 {
 public:
-    Seller(string name_);
+    Seller(bool sellerorbuyer, string name_);
     void addProductForSale(Product p); // adds a product to the seller's list of products
     double getBalance();               // returns the balance of the seller
     void getSellerOverview();          // returns a list of products for sale
