@@ -1,4 +1,6 @@
 #include "Buyer.h"
+// #include "Product.h"
+// #include "Seller.h"
 #include <vector>
 #include <string>
 #include <iostream>
@@ -36,12 +38,12 @@ void Buyer::getBuyerOverview()
     return;
 }
 
-bool Buyer::messageSend(Seller s, string message)
+bool Buyer::messageSend(Seller &s, string message)
 {
     string add = "Buyer " + this->getName() + " sent you a message: " + message;
     s.messages.push_back(add);
     this->messages.push_back(add);
-    if (s.messages[s.messages.size()-1] == add)
+    if (s.messages[s.messages.size() - 1] == add)
     {
         return true;
     }

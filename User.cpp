@@ -7,18 +7,15 @@
 
 using namespace std;
 
-
-
 User::User(bool bors)
 {
     isSeller = bors;
-     // use a static int to keep track of this , userID++;
+    // use a static int to keep track of this , userID++;
 }
 
 User::User()
 {
     isSeller = true;
-    
 }
 
 // User::~User()
@@ -30,7 +27,6 @@ bool User::getIsSeller()
 {
     return isSeller;
 }
-
 
 void User::setName(string n)
 {
@@ -49,5 +45,3 @@ int User::getPhoneNumber()
 {
     return phoneNum;
 }
-
-

@@ -6,12 +6,16 @@
 #include <string>
 #include <iostream>
 
-int main() {
+int Buyer::uid;
+int Seller::uid;
+int Product::pid;
+int Product::oid;
+
+int main()
+{
 
     Seller s = Seller(true, "John");
     Buyer b = Buyer(false, "Jane");
 
-    s.messageSend(b, "Hello");
-    b.messagesPrint();
-
+    cout << b.getUID() << endl;
 }
