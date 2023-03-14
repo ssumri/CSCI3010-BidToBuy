@@ -7,48 +7,18 @@
 
 using namespace std;
 
-// bool messageSend(User u, string message)
-// {
-//     string add;
-//     if (u.getIsSeller() == false)
-//     {
-//         add = "Buyer says: " + message;
-//     }
-//     else
-//     {
-//         add = "Seller says: " + message;
-//     }
 
-//     b.messages.push_back(add);
-//     this->messages.push_back(add);
-//     if (b.message[message.size() - 1] == add)
-//     {
-//         return true;
-//     }
-//     else
-//     {
-//         return false;
-//     }
-// }
-
-void messageRecieve()
-{
-    // for (int i = 0; i < messages.size(); i++)
-    // {
-    //     cout << messages[i] << endl;
-    // }
-}
 
 User::User(bool bors)
 {
     isSeller = bors;
-    userID = ++uid; // use a static int to keep track of this , userID++;
+     // use a static int to keep track of this , userID++;
 }
 
 User::User()
 {
     isSeller = true;
-    userID = ++uid;
+    
 }
 
 // User::~User()
@@ -61,10 +31,6 @@ bool User::getIsSeller()
     return isSeller;
 }
 
-int User::getUserId()
-{
-    return userID;
-}
 
 void User::setName(string n)
 {
@@ -83,3 +49,5 @@ int User::getPhoneNumber()
 {
     return phoneNum;
 }
+
+

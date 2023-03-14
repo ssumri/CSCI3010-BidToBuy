@@ -21,6 +21,7 @@ public:
     string getName();             // returns name of user
     void setPhoneNumber(int num); // updates number of user
     int getPhoneNumber();         // returns number of user
+    
 
     // getter and setters for all fields
     // add applicable methods and use dynamic dispatch as needed
@@ -31,7 +32,7 @@ private:
     string name;
     int phoneNum;
     double balance;
-    static int uid;
+    
 };
 
 #endif

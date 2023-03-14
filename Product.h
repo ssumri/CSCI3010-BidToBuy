@@ -40,6 +40,8 @@ public:
     string getProductName();       // returns the name of the product
     void setProductCategory(ProductCategory category_);
     void setNewOwner(int userID);
+    static int getOID();
+    static int getPID();
     
     
 };

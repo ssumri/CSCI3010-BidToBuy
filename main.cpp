@@ -17,8 +17,11 @@ int main()
 {
     vector<Seller> sellers = {Seller(true,"SuperSeller23"),Seller(true,"BargainHunter87"),Seller(true,"Collectibles_Galore"),Seller(true,"Fashionista101"),Seller(true,"TechDeals247"),Seller(true,"RetroGames4U"),Seller(true,"LuxuryWatchesOnly"),Seller(true,"AntiqueTreasuresShop"),Seller(true,"PetLoverParadise"),Seller(true,"SportsMemorabiliaHQ")};
     vector<Buyer> buyers = {Buyer(false,"SmartShopper123"),Buyer(false,"BargainFinder"),Buyer(false,"Shopaholic22"),Buyer(false,"SeriousBuyer"),Buyer(false,"FrequentBuyer55"),Buyer(false,"DealHunter99"),Buyer(false,"LuxuryBuyer123"),Buyer(false,"BestOfferMaker"),Buyer(false,"VintageCollector"),Buyer(false,"ImpulseBuyer")};
+    // Product(string prodName, ProductCategory category_, string cond_, double price_, double highestb_);
+    vector<Product> products = {Product("iPhone 12 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12 Pro", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12", ProductCategory::Electronics, "New", 799.99, 0.0), Product("iPhone 12 Mini", ProductCategory::Electronics, "New", 699.99, 0.0), Product("iPhone 11 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0)};
     cout << "Starting Simulation..." << endl;
     int userType;
+    int iterator = 0;
     while (true)
     {
         cout << "Choose a role: " << endl;
@@ -27,31 +30,86 @@ int main()
         cin >> userType;
         if (userType == 1 || userType == 2)
         {
-            break;
-        }
-        else
-        {
-            cout << "invalid input." << endl;
-        }
-    }
+            if (userType == 1)
+            {
+                Buyer b = buyers[iterator];
+                cout << "Displaying buyer overview of " << b.getName() << endl;
+                b.getBuyerOverview();
+                cout << "Press 1 to bid on a product, 0 to continue to next buyer" << endl;
+                cin >> userType;
+                if (userType == 1) {
+                    cout << "Enter product ID: " << endl;
+                    int prodID;
+                    cin >> prodID;
+                    bool found = false;
+                    Seller s = Seller(true, "Rahul");
+                    
+                    for (int i = 0; i < products.size(); i++)
+                    {
+                        s.addProductForSale(products[i]);
+                    }
 
-    if (userType == 1)
-    {
-        Buyer b = Buyer(false, "Rahul");
-        buyers.push_back(b);
-        cout << b.getName() << endl;
+                    
+                }
+                
+            }
+            else
+            {
+                Seller s = sellers[iterator];
+                cout << "Displaying seller overview of " << s.getName() << endl;
+                s.getSellerOverview();
+                cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
+                cin >> userType;
+                if (userType == 1) {
+                    cout << "Enter product name: " << endl;
+                    string prodName;
+                    cin >> prodName;
+                    cout << "Enter product category: " << endl;
+                    string prodCategory_;
+                    cin >> prodCategory_;
+                    ProductCategory prodCategory;
+                    if (prodCategory_ == "Electronics")
+                    {
+                        prodCategory = ProductCategory::Electronics;
+                    }
+                    else if (prodCategory_ == "Clothing")
+                    {
+                        prodCategory = ProductCategory::Clothing;
+                    }
+                    else if (prodCategory_ == "Furniture")
+                    {
+                        prodCategory = ProductCategory::Furniture;
+                    }
+                    else if (prodCategory_ == "Jewelry")
+                    {
+                        prodCategory = ProductCategory::Jewelry;
+                    }
+                    else if (prodCategory_ == "Games")
+                    {
+                        prodCategory = ProductCategory::Games;
+                    }
+                    else
+                    {
+                        prodCategory = ProductCategory::Other;
+                    }
+                    cout << "Enter product condition: " << endl;
+                    string prodCondition;
+                    cin >> prodCondition;
+                    cout << "Enter product price: " << endl;
+                    double prodPrice;
+                    cin >> prodPrice;
+                    Product p = Product(prodName, prodCategory, prodCondition, prodPrice, 0.0);
+                    s.addProductForSale(p);
+                }
+                
+        }
+        
+    } else {
+        cout << "Invalid input" << endl;
     }
-    else
-    {
-        Seller s = Seller(true, "Sami");
-        sellers.push_back(s);
-        cout << s.getName() << endl;
-    }
+}
+
     
-    for (int i = 0; i < sellers.size(); i++)
-    {
-        cout << sellers[i].getName() << endl;
-    }
 
     // Driver d = new Driver();
     // Driver &d = Driver::GetInstance();

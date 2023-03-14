@@ -1,4 +1,4 @@
-Userid, buyerOrSeller, address
+Userid,name,isSeller,address,phoneNumber
 1,true,123 Main St,1234
 2,false,456 Oak Ave,5678
 3,true,789 Elm Rd,9012

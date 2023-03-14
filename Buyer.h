@@ -11,13 +11,17 @@ using namespace std;
 
 class Buyer : public User
 {
+static int uid;
 public:
     Buyer(bool buyerseller, string name_);
     bool addBidToProduct(Product p, double bid);  // places a bid
     double getBalance();     // returns the balance of the buyer
     void getBuyerOverview(); // returns a list of items bought by user
     // requires << operator overload for seller and products
-
+    string getUID();
+    bool messageSend(Seller s, string message);
+    void messagesPrint();
+    vector <string> messages;
     // define operator overload for == in terms of products
 
 private:
@@ -25,6 +29,8 @@ private:
     string name;
     vector<Product> products;
     double balance;
+    string buyerID;
+    
 };
 
 #endif

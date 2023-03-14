@@ -62,6 +62,15 @@ void Product::setNewOwner(int userID)
 {
     ownerID = userID;
 }
+
+int Product::getOID()
+{
+    return oid;
+}
+int Product::getPID()
+{
+    return pid;
+}
 // used to
 // define all the category of products sellers can sell on this app. You may
 // add as many categories you like. There should be at least enough of them to
