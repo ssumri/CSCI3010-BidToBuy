@@ -2,8 +2,8 @@
 #include <string>
 #include <iostream>
 
-#include "Product.h"
-#include "User.h"
+#include "Product.cpp"
+#include "User.cpp"
 
 using namespace std;
 
@@ -11,6 +11,8 @@ int Buyer::uid;
 int Seller::uid;
 int Product::pid;
 string Product::oid;
+
+// 3/15/2023 1:02 update: you can now move on the next seller, and adding a single product works without asking for another product
 
 /*
 TODO:
@@ -158,11 +160,13 @@ int main()
         }
         else
         {
+            
             Seller s = sellers[iterator];
             cout << "Displaying seller overview of " << s.getName() << endl;
             s.getSellerOverview();
             cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
             cin >> userType;
+            while (true) 
             if (userType == 1)
             {
                 cout << "Enter product name: " << endl;
@@ -187,6 +191,17 @@ int main()
                 Product p = Product(prodName, prodCategory, prodCondition, prodPrice, 0.0);
                 s.addProductForSale(p);
                 p.addProduct();
+                break;
+            } else {
+
+                iterator++;
+                Seller s = sellers[iterator];
+                cout << "Displaying seller overview of " << s.getName() << endl;
+                s.getSellerOverview();
+                cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
+                cin >> userType;
+
+
             }
         }
     }
