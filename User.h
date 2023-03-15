@@ -52,6 +52,7 @@ public:
     bool messageSendBuyer(string sellerName, string message);
     void messagesPrint();
     void notifyBuyer(Product p);
+    void addBuyer();
     vector<string> messages;
 
 private:
