@@ -1,19 +1,76 @@
-// written by: Samriddhi Lamichhane and Rahul Shenoy
-
-// #include "Driver.cpp"
-#include "Product.cpp"
-#include "User.cpp"
-#include "Seller.cpp"
-#include "Buyer.cpp"
 #include <vector>
 #include <string>
 #include <iostream>
 
+#include "Product.h"
+#include "User.h"
+
 using namespace std;
+
 int Buyer::uid;
 int Seller::uid;
 int Product::pid;
-int Product::oid;
+string Product::oid;
+
+// ProductCategory stringToCategory(string s)
+// {
+//     if (s == "Clothing")
+//     {
+//         return ProductCategory::Clothing;
+//     }
+//     if (s == "Electronics")
+//     {
+//         return ProductCategory::Electronics;
+//     }
+//     if (s == "Furniture")
+//     {
+//         return ProductCategory::Furniture;
+//     }
+//     if (s == "Games")
+//     {
+//         return ProductCategory::Games;
+//     }
+//     if (s == "Jewelry")
+//     {
+//         return ProductCategory::Jewelry;
+//     }
+//     else
+//     {
+//         return ProductCategory::Other;
+//     }
+// }
+
+// string categoryToString(ProductCategory c)
+// {
+//     if (c == ProductCategory::Clothing)
+//     {
+//         return "Clothing";
+//     }
+//     if (c == ProductCategory::Electronics)
+//     {
+//         return "Electronics";
+//     }
+//     if (c == ProductCategory::Furniture)
+//     {
+//         return "Furniture";
+//     }
+//     if (c == ProductCategory::Games)
+//     {
+//         return "Games";
+//     }
+//     if (c == ProductCategory::Jewelry)
+//     {
+//         return "Jewelry";
+//     }
+//     if (c == ProductCategory::Other)
+//     {
+//         return "Other";
+//     }
+//     else
+//     {
+//         return "Invalid Product Category Type.";
+//     }
+// }
 
 int main()
 {
@@ -53,6 +110,11 @@ int main()
             b.getBuyerOverview();
 
             // TODO- iterate through products in database.
+            for (int i = 0; i < products.size(); i++)
+            {
+                cout << "Product " << i << ": " << endl;
+                cout << products[i].productDetails() << endl;
+            }
             // --- creates a vector with all the products in productsBid file.
             // --- iterates through all the values in the products vector.
 
@@ -88,7 +150,10 @@ int main()
                 cout << "Enter product category: " << endl;
                 string prodCategory_;
                 cin >> prodCategory_;
-                ProductCategory prodCategory = stringToCategory(prodCategory_);
+
+                // TODO
+                // stringToCategory(prodCategory_)
+                ProductCategory prodCategory = ProductCategory::Clothing;
 
                 cout << "Enter product condition: " << endl;
                 string prodCondition;

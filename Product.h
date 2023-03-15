@@ -19,7 +19,7 @@ enum class ProductCategory
 class Product
 {
     static int pid;
-    static int oid;
+    static string oid;
 
 private:
     double price;
@@ -29,6 +29,8 @@ private:
     int ownerID;
     string condition;
     ProductCategory category;
+    bool open;
+    bool onHold;
 
 public:
     Product();
@@ -40,11 +42,14 @@ public:
     string getProductName();       // returns the name of the product
     void setProductCategory(ProductCategory category_);
     void setNewOwner(int userID);
-    static int getOID();
+    static string getOID();
     static int getPID();
+    void setOID(string oid_);
 
     void setInitialProducts(vector<Product> *stock);
     void addProduct();
+
+    string productDetails();
 };
 
 class Electronics : public Product

@@ -13,6 +13,8 @@ Product::Product(string prodName_, ProductCategory category_, string cond_, doub
     condition = cond_;
     price = price_;
     highestBid = highestb_;
+    open = true;
+    onHold = false;
 }
 
 Product::Product()
@@ -23,66 +25,8 @@ Product::Product()
     condition = "New";
     price = 0.0;
     highestBid = 0.0;
-}
-
-ProductCategory stringToCategory(string s)
-{
-    if (s == "Clothing")
-    {
-        return ProductCategory::Clothing;
-    }
-    if (s == "Electronics")
-    {
-        return ProductCategory::Electronics;
-    }
-    if (s == "Furniture")
-    {
-        return ProductCategory::Furniture;
-    }
-    if (s == "Games")
-    {
-        return ProductCategory::Games;
-    }
-    if (s == "Jewelry")
-    {
-        return ProductCategory::Jewelry;
-    }
-    else
-    {
-        return ProductCategory::Other;
-    }
-}
-
-string categoryToString(ProductCategory c)
-{
-    if (c == ProductCategory::Clothing)
-    {
-        return "Clothing";
-    }
-    if (c == ProductCategory::Electronics)
-    {
-        return "Electronics";
-    }
-    if (c == ProductCategory::Furniture)
-    {
-        return "Furniture";
-    }
-    if (c == ProductCategory::Games)
-    {
-        return "Games";
-    }
-    if (c == ProductCategory::Jewelry)
-    {
-        return "Jewelry";
-    }
-    if (c == ProductCategory::Other)
-    {
-        return "Other";
-    }
-    else
-    {
-        return "Invalid Product Category Type.";
-    }
+    open = true;
+    onHold = false;
 }
 
 // TODO bruh
@@ -93,16 +37,24 @@ void Product::setInitialProducts(vector<Product> *stock)
 
 void Product::addProduct()
 {
-    ofstream outFile;
-    outFile.open("productBid.csv", std::ios::app);
-    if (!outFile.fail())
-    {
-        outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << categoryToString(category) << endl;
-    }
-    else
-    {
-        cout << "Cannot open file" << endl;
-    }
+    // ofstream outFile;
+    // outFile.open("productBid.csv", std::ios::app);
+    // if (!outFile.fail())
+    // {
+    //     outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << categoryToString(category) << endl;
+    // }
+    // else
+    // {
+    //     cout << "Cannot open file" << endl;
+    // }
+    open = true;
+    onHold = false;
+}
+
+string Product::productDetails()
+{
+    string output = "";
+    return output;
 }
 
 double Product::getCurrentBid()
@@ -112,12 +64,26 @@ double Product::getCurrentBid()
 
 bool Product::setCurrentBid(double nb)
 {
-    if (nb > highestBid)
+    if (open == true && onHold == false)
     {
         highestBid = nb;
         return true;
     }
-    return false;
+    else if (open == true && onHold == true)
+    {
+        cout << "This product is on hold. You cannot bid on it." << endl;
+        return false;
+    }
+    else
+    {
+        cout << "This product is closed. You cannot bid on it." << endl;
+        return false;
+    }
+}
+
+void Product::setOID(string oid_)
+{
+    oid = oid_;
 }
 
 double Product::getProductPrice()
@@ -140,7 +106,7 @@ void Product::setNewOwner(int userID)
     ownerID = userID;
 }
 
-int Product::getOID()
+string Product::getOID()
 {
     return oid;
 }
