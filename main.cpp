@@ -4,6 +4,7 @@
 
 #include "Product.h"
 #include "User.h"
+#include "Driver.h"
 
 using namespace std;
 
@@ -266,45 +267,84 @@ int main()
             Seller s = sellers[iterator];
             cout << "Displaying seller overview of " << s.getName() << endl;
             s.getSellerOverview();
-            cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
-            cin >> userType;
+
             while (true)
-                if (userType == 1)
+            {
+                cout << "What would you like to do? Pick one." << endl;
+                cout << "1. List products for sale." << endl;
+                cout << "2. Check messages." << endl;
+                cout << "3. Check account balance." << endl;
+                cout << "4. Update personal information." << endl;
+                cout << "5. View previous inventory." << endl;
+                cout << "6. Open/Close bidding. " << endl;
+
+                int userChoice;
+                cin >> userChoice;
+
+                switch (userChoice)
                 {
-                    cout << "Enter product name: " << endl;
-                    string prodName;
-                    cin >> prodName;
-
-                    cout << "Enter product category: " << endl;
-                    string prodCategory_;
-                    cin >> prodCategory_;
-
-                    // TODO
-                    // stringToCategory(prodCategory_)
-                    ProductCategory prodCategory = ProductCategory::Clothing;
-
-                    cout << "Enter product condition: " << endl;
-                    string prodCondition;
-                    cin >> prodCondition;
-
-                    cout << "Enter product price: " << endl;
-                    double prodPrice;
-                    cin >> prodPrice;
-                    Product p = Product(prodName, prodCategory, prodCondition, prodPrice, 0.0);
-                    s.addProductForSale(p);
-                    p.addProduct();
-                    break;
-                }
-                else
+                case 1:
                 {
+                    while (true)
+                    {
+                        if (userType == 1)
+                        {
+                            cout << "Enter product name: " << endl;
+                            string prodName;
+                            cin >> prodName;
 
-                    iterator++;
-                    Seller s = sellers[iterator];
-                    cout << "Displaying seller overview of " << s.getName() << endl;
-                    s.getSellerOverview();
-                    cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
-                    cin >> userType;
+                            cout << "Enter product category: " << endl;
+                            string prodCategory_;
+                            cin >> prodCategory_;
+
+                            // TODO
+                            // stringToCategory(prodCategory_)
+                            ProductCategory prodCategory = ProductCategory::Clothing;
+
+                            cout << "Enter product condition: " << endl;
+                            string prodCondition;
+                            cin >> prodCondition;
+
+                            cout << "Enter product price: " << endl;
+                            double prodPrice;
+                            cin >> prodPrice;
+                            Product p = Product(prodName, prodCategory, prodCondition, prodPrice, 0.0);
+                            s.addProductForSale(p);
+                            p.addProduct();
+                            break;
+                        }
+                        else
+                        {
+
+                            iterator++;
+                            Seller s = sellers[iterator];
+                            cout << "Displaying seller overview of " << s.getName() << endl;
+                            s.getSellerOverview();
+                            cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
+                            cin >> userType;
+                        }
+                    }
                 }
+                case 2:
+                {
+                }
+                case 3:
+                {
+                }
+                case 4:
+                {
+                }
+                case 5:
+                {
+                }
+                case 6:
+                {
+                }
+                }
+
+                cout << "Press 1 to add a product for sale, 0 to continue to next seller" << endl;
+                cin >> userType;
+            }
         }
         else
         {

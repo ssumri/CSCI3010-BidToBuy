@@ -52,7 +52,6 @@ public:
     bool getOpen();
     string getCondition();
 
-    void setInitialProducts(vector<Product> *stock);
     void addProduct();
 
     string productDetails();

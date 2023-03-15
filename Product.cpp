@@ -34,10 +34,6 @@ Product::Product()
 }
 
 // sets initial products in the stock to
-void Product::setInitialProducts(vector<Product> *stock)
-{
-    return;
-}
 
 string Product::getCondition()
 {
