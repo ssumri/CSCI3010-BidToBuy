@@ -110,7 +110,7 @@ void Buyer::addBuyer()
     outFile.open("userInfo.csv", std::ios::app);
     if (!outFile.fail())
     {
-        outFile << buyerID << "," << name << "," << isSeller << "," << address << "," << phoneNum << endl;
+        outFile << buyerID << "," << name << "," << this->xisSeller() << "," << this->address << "," << this->phoneNum << endl;
     }
     else
     {
