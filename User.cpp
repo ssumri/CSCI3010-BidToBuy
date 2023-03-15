@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -61,10 +62,20 @@ bool Buyer::addBidToProduct(Product p, double bid)
     {
         p.setCurrentBid(bid);
         p.setOID(this->getUID());
+        cout << "Your bid has been placed" << endl;
+        cout << "Your current balance is now: " << this->getBalance() << endl;
         return true;
+    }
+    else if (bid > this->getBalance())
+    {
+        cout << "You do not have enough money to bid on this item" << endl;
+        cout << "Your balance is: " << this->getBalance() << endl;
+        return false;
     }
     else
     {
+        cout << "Your bid is not high enough" << endl;
+        cout << "The current bid is: " << p.getCurrentBid() << endl;
         return false;
     }
 }
@@ -90,6 +101,20 @@ bool Buyer::messageSendBuyer(string sellerName, string message)
     else
     {
         return false;
+    }
+}
+
+void Buyer::addBuyer() 
+{
+    ofstream outFile;
+    outFile.open("userInfo.csv", std::ios::app);
+    if (!outFile.fail())
+    {
+        outFile << buyerID << "," << name << "," << isSeller << "," << address << "," << phoneNum << endl;
+    }
+    else
+    {
+        cout << "Cannot open file" << endl;
     }
 }
 
@@ -172,5 +197,14 @@ void Seller::messagesPrint()
     for (int i = 0; i < this->messages.size(); i++)
     {
         cout << this->messages[i] << endl;
+    }
+}
+
+void Buyer::notifyBuyer(Product p)
+{
+    if (!p.getOpen()) {
+
+        cout << "Buyer " << p.getOID() << " has won the auction for " << p.getProductName() << endl;
+
     }
 }

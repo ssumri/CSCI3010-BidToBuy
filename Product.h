@@ -49,6 +49,7 @@ public:
     static string getOID();
     static int getPID();
     void setOID(string oid_);
+    bool getOpen();
 
     void setInitialProducts(vector<Product> *stock);
     void addProduct();

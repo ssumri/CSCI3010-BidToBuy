@@ -81,6 +81,11 @@ bool Product::setCurrentBid(double nb)
     }
 }
 
+bool Product::getOpen()
+{
+    return open;
+}
+
 void Product::setOID(string oid_)
 {
     oid = oid_;

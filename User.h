@@ -13,7 +13,7 @@ class Product;
 static vector<string> messages = vector<string>();
 class User
 {
-    static int uid;
+    
 
 public:
     // void setIsSeller(); // false for buyer true for setter
@@ -24,6 +24,7 @@ public:
     void setPhoneNumber(int num); // updates number of user
     int getPhoneNumber();         // returns number of user
     User(bool buyerorseller);     // true for seller false for buyer
+    
     User();
 
 private:
@@ -34,6 +35,7 @@ private:
     string name;
     int phoneNum;
     double balance;
+    string address;
 };
 
 class Buyer : public User
@@ -49,6 +51,7 @@ public:
     string getUID();
     bool messageSendBuyer(string sellerName, string message);
     void messagesPrint();
+    void notifyBuyer(Product p);
     vector<string> messages;
 
 private:
@@ -75,6 +78,7 @@ public:
     bool messageSendSeller(string buyerName, string message);
     void messagesPrint();
     vector<string> messages;
+
 
     // define operator overload for == in terms of products
 

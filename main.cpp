@@ -19,18 +19,18 @@ TODO:
 - reimplement driver with helper functions
 - finish product category functions in product.cpp
 - << operator overload for Product Category
-- CSV files
+- CSV files - in progress
     - writing to userInfo csv file
     - editing data inside csv file
 - Bidding process
-    - show buyer balance
+    - show buyer balance - coded (buyer balance shown after purhasing an item or when failed due to insufficient balance)
     - map that each product has. stores string as key and double as value(userID, bid)
 - UI
     - edit personal information
     - choose between buyer and seller
     - allow buyer to decide on how much bid to place.
 - Messaging between users
-    - notify buyer when bid is won
+    - notify buyer when bid is won - coded not sure if it works
     - notify seller when buyer wants to buy the item
 */
 
@@ -100,7 +100,7 @@ int main()
     vector<Buyer> buyers = {Buyer(false, "SmartShopper123"), Buyer(false, "BargainFinder"), Buyer(false, "Shopaholic22"), Buyer(false, "SeriousBuyer"), Buyer(false, "FrequentBuyer55"), Buyer(false, "DealHunter99"), Buyer(false, "LuxuryBuyer123"), Buyer(false, "BestOfferMaker"), Buyer(false, "VintageCollector"), Buyer(false, "ImpulseBuyer")};
     // Product(string prodName, ProductCategory category_, string cond_, double price_, double highestb_);
     vector<Product> products = {Product("iPhone 12 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12 Pro", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12", ProductCategory::Electronics, "New", 799.99, 0.0), Product("iPhone 12 Mini", ProductCategory::Electronics, "New", 699.99, 0.0), Product("iPhone 11 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0)};
-
+    
     cout << "Starting Simulation..." << endl;
 
     products[0].addProduct();
