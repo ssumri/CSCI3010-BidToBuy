@@ -5,8 +5,10 @@
 #include <iostream>
 using namespace std;
 
+// paratemerzed constructor for product class
 Product::Product(string prodName_, ProductCategory category_, string cond_, double price_, double highestb_)
 {
+    // incrememnts the static pid everytime a new product is created.
     productID = ++this->pid;
     prodName = prodName_;
     category = category_;
@@ -17,8 +19,10 @@ Product::Product(string prodName_, ProductCategory category_, string cond_, doub
     onHold = false;
 }
 
+// default constructor for Product class
 Product::Product()
 {
+    // incrememnts the static pid everytime a new product is created.
     productID = ++this->pid;
     prodName = "";
     category = ProductCategory::Other;
@@ -29,9 +33,15 @@ Product::Product()
     onHold = false;
 }
 
+// sets initial products in the stock to
 void Product::setInitialProducts(vector<Product> *stock)
 {
     return;
+}
+
+string Product::getCondition()
+{
+    return condition;
 }
 
 void Product::addProduct()
@@ -54,6 +64,15 @@ void Product::addProduct()
 string Product::productDetails()
 {
     string output = "";
+    // return output;
+    cout << "Product ID: " << getPID() << endl;
+    cout << "Product Name: " << getProductName() << endl;
+    cout << "Product Category: other" << endl; // fix later
+    cout << "Product Condition: " << getCondition() << endl;
+    cout << "Product Price: " << getProductPrice() << endl;
+    cout << "Product Highest Bid: " << getCurrentBid() << endl;
+    cout << "Product Open: " << getOpen() << endl;
+    cout << "Product On Hold: " << onHold << endl;
     return output;
 }
 
@@ -67,6 +86,7 @@ bool Product::setCurrentBid(double nb)
     if (open == true && onHold == false)
     {
         highestBid = nb;
+        cout << "Bid placed successfully." << endl;
         return true;
     }
     else if (open == true && onHold == true)

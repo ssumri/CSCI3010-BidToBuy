@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include "Product.h"
+#include <map>
 
 using namespace std;
 
@@ -13,7 +14,6 @@ class Product;
 static vector<string> messages = vector<string>();
 class User
 {
-    
 
 public:
     // void setIsSeller(); // false for buyer true for setter
@@ -24,10 +24,13 @@ public:
     void setPhoneNumber(int num); // updates number of user
     int getPhoneNumber();         // returns number of user
     User(bool buyerorseller);     // true for seller false for buyer
-    
+
+    string getAddress();
+    void setAddress(string newaddress);
+
     User();
 
-private:
+protected:
     // Add fields as applicable
 
     bool isSeller;
@@ -44,16 +47,18 @@ class Buyer : public User
 
 public:
     Buyer(bool buyerseller, string name_);
-    bool addBidToProduct(Product p, double bid); // places a bid
-    double getBalance();                         // returns the balance of the buyer
-    void getBuyerOverview();                     // returns a list of items bought by user
+    bool addBidToProduct(Product &p, double bid); // places a bid
+    double getBalance();                          // returns the balance of the buyer
+    void getBuyerOverview();                      // returns a list of items bought by user
     // requires << operator overload for seller and products
     string getUID();
     bool messageSendBuyer(string sellerName, string message);
     void messagesPrint();
     void notifyBuyer(Product p);
     void addBuyer();
+    void printBidHistory();
     vector<string> messages;
+    map<string, double> bidHistory;
 
 private:
     // add more fields as applicable
@@ -78,8 +83,8 @@ public:
     string getUID();
     bool messageSendSeller(string buyerName, string message);
     void messagesPrint();
+    void addSeller();
     vector<string> messages;
-
 
     // define operator overload for == in terms of products
 

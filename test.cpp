@@ -1,25 +1,25 @@
-// #include "Product.cpp"
-// #include "User.cpp"
-// // #include "Seller.cpp"
-// // #include "Buyer.cpp"
-// #include <vector>
-// #include <string>
-// #include <iostream>
 
-// int Buyer::uid;
-// int Seller::uid;
-// int Product::pid;
-// string Product::oid;
+#include <vector>
+#include <string>
+#include <iostream>
+#include "Product.h"
+#include "User.h"
 
-// int main()
-// {
+int Buyer::uid;
+int Seller::uid;
+int Product::pid;
+string Product::oid;
 
-//     Seller s = Seller(true, "John");
-//     Buyer b = Buyer(false, "Jane");
+using namespace std;
+int main()
+{
 
-//     Product p1 = Product("apple", ProductCategory::Other, "New", 2.0, 0.0);
-//     s.addProductForSale(p1);
-//     // s.getSellerOverview();
-//     bool x = b.addBidToProduct(p1, 11);
-//     cout << "Bid added: " << x << endl;
-// }
+    Seller s = Seller(true, "John");
+    Buyer b = Buyer(false, "Jane");
+
+    Product p1 = Product("apple", ProductCategory::Other, "New", 2.0, 0.0);
+    s.addProductForSale(p1);
+    p1.productDetails();
+    bool x = b.addBidToProduct(p1, 11);
+    p1.productDetails();
+}

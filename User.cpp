@@ -41,6 +41,16 @@ int User::getPhoneNumber()
     return phoneNum;
 }
 
+void User::setAddress(string add)
+{
+    address = add;
+}
+
+string User::getAddress()
+{
+    return address;
+}
+
 // ______________________ BUYER STUFF ______________________
 
 class Seller;
@@ -49,20 +59,22 @@ Buyer::Buyer(bool buyerseller, string name_) : User(buyerseller)
 {
 
     name = name_;
-    balance = 0; // fix balance
+    balance = 1000; // fix balance
     setName(name_);
     buyerID = "B" + to_string(++uid);
     // products = vector<Product>();
     // messages = vector<string>();
 }
 
-bool Buyer::addBidToProduct(Product p, double bid)
+bool Buyer::addBidToProduct(Product &p, double bid)
 {
     if (bid > p.getCurrentBid() && bid <= this->getBalance())
     {
         p.setCurrentBid(bid);
         p.setOID(this->getUID());
+        bidHistory.insert({p.getProductName(), bid});
         cout << "Your bid has been placed" << endl;
+        balance = balance - bid;
         cout << "Your current balance is now: " << this->getBalance() << endl;
         return true;
     }
@@ -104,13 +116,13 @@ bool Buyer::messageSendBuyer(string sellerName, string message)
     }
 }
 
-void Buyer::addBuyer() 
+void Buyer::addBuyer()
 {
     ofstream outFile;
     outFile.open("userInfo.csv", std::ios::app);
     if (!outFile.fail())
     {
-        outFile << buyerID << "," << name << "," << this->xisSeller() << "," << this->address << "," << this->phoneNum << endl;
+        outFile << buyerID << "," << name << "," << isSeller << "," << address << "," << phoneNum << endl;
     }
     else
     {
@@ -130,6 +142,15 @@ void Buyer::messagesPrint()
 void Buyer::getBuyerOverview()
 {
     cout << "* Insert Buyer Overview here" << endl;
+}
+
+void Buyer::printBidHistory()
+{
+    cout << "Bid History: " << endl;
+    for (auto itr = bidHistory.begin(); itr != bidHistory.end(); ++itr)
+    {
+        cout << "Product Name: " << itr->first << "| Bid amount: " << itr->second << endl;
+    }
 }
 
 // ______________________ SELLER STUFF ______________________
@@ -202,9 +223,23 @@ void Seller::messagesPrint()
 
 void Buyer::notifyBuyer(Product p)
 {
-    if (!p.getOpen()) {
+    if (!p.getOpen())
+    {
 
         cout << "Buyer " << p.getOID() << " has won the auction for " << p.getProductName() << endl;
+    }
+}
 
+void Seller::addSeller()
+{
+    ofstream outFile;
+    outFile.open("userInfo.csv", std::ios::app);
+    if (!outFile.fail())
+    {
+        outFile << sellerID << "," << name << "," << isSeller << "," << address << "," << phoneNum << endl;
+    }
+    else
+    {
+        cout << "Cannot open file" << endl;
     }
 }

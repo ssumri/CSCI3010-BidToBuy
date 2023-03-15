@@ -50,6 +50,7 @@ public:
     static int getPID();
     void setOID(string oid_);
     bool getOpen();
+    string getCondition();
 
     void setInitialProducts(vector<Product> *stock);
     void addProduct();
