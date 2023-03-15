@@ -29,7 +29,6 @@ Product::Product()
     onHold = false;
 }
 
-// TODO bruh
 void Product::setInitialProducts(vector<Product> *stock)
 {
     return;
@@ -37,16 +36,17 @@ void Product::setInitialProducts(vector<Product> *stock)
 
 void Product::addProduct()
 {
-    // ofstream outFile;
-    // outFile.open("productBid.csv", std::ios::app);
-    // if (!outFile.fail())
-    // {
-    //     outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << categoryToString(category) << endl;
-    // }
-    // else
-    // {
-    //     cout << "Cannot open file" << endl;
-    // }
+    ofstream outFile;
+    outFile.open("productBid.csv", std::ios::app);
+    if (!outFile.fail())
+    {
+        outFile << "875,3.54,9.00,ring,new,1,Jewelry" << endl;
+        // outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << category << endl;
+    }
+    else
+    {
+        cout << "Cannot open file" << endl;
+    }
     open = true;
     onHold = false;
 }
@@ -119,16 +119,89 @@ int Product::getPID()
 // add as many categories you like. There should be at least enough of them to
 // cover all the classes you created as part of the products inheritance
 // hierarchy.
-// Product *productFactory(Clothing::ProductCategory pc)
-// {
-//     switch (pc)
-//     {
-//     case ProductCategory::Clothing:
-//         return new Clothing(...);
-//     case ProductCategory::Furniture:
-//         return new Furniture(...);
-//         .
-//             .
-//             .default : return new Product(....);
-//     }
-// }
+// Electronics, Furniture, Clothing, Jewelry, Games
+Product *productFactory(string pc)
+{
+    if (pc == "Electronics")
+    {
+        return new Electronics();
+    }
+    else if (pc == "Clothing")
+    {
+        return new Clothing();
+    }
+    else if (pc == "Furniture")
+    {
+        return new Furniture();
+    }
+    else if (pc == "Games")
+    {
+        return new Games();
+    }
+    else if (pc == "Other")
+    {
+        return new Other();
+    }
+    else
+    {
+        return new Product();
+    }
+}
+
+Electronics::Electronics() : Product()
+{
+    category = ProductCategory::Electronics;
+    condition = "New";
+    price = 0.0;
+    highestBid = 0.0;
+    open = true;
+    onHold = false;
+}
+
+Furniture::Furniture() : Product()
+{
+    category = ProductCategory::Furniture;
+    condition = "New";
+    price = 0.0;
+    highestBid = 0.0;
+    open = true;
+    onHold = false;
+}
+
+Clothing::Clothing() : Product()
+{
+    category = ProductCategory::Clothing;
+    condition = "New";
+    price = 0.0;
+    highestBid = 0.0;
+    open = true;
+    onHold = false;
+}
+
+Jewelry::Jewelry() : Product()
+{
+    category = ProductCategory::Jewelry;
+    condition = "New";
+    price = 0.0;
+    highestBid = 0.0;
+    open = true;
+    onHold = false;
+}
+
+Games::Games() : Product()
+{
+    category = ProductCategory::Games;
+    condition = "New";
+    price = 0.0;
+    highestBid = 0.0;
+    open = true;
+    onHold = false;
+}
+
+Other::Other() : Product()
+{
+    category = ProductCategory::Electronics;
+    condition = "New";
+    open = true;
+    onHold = false;
+}

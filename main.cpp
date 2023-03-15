@@ -12,6 +12,26 @@ int Seller::uid;
 int Product::pid;
 string Product::oid;
 
+/*
+TODO:
+- reimplement driver with helper functions
+- finish product category functions in product.cpp
+- << operator overload for Product Category
+- CSV files
+    - writing to userInfo csv file
+    - editing data inside csv file
+- Bidding process
+    - show buyer balance
+    - map that each product has. stores string as key and double as value(userID, bid)
+- UI
+    - edit personal information
+    - choose between buyer and seller
+    - allow buyer to decide on how much bid to place.
+- Messaging between users
+    - notify buyer when bid is won
+    - notify seller when buyer wants to buy the item
+*/
+
 // ProductCategory stringToCategory(string s)
 // {
 //     if (s == "Clothing")
@@ -80,6 +100,8 @@ int main()
     vector<Product> products = {Product("iPhone 12 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12 Pro", ProductCategory::Electronics, "New", 999.99, 0.0), Product("iPhone 12", ProductCategory::Electronics, "New", 799.99, 0.0), Product("iPhone 12 Mini", ProductCategory::Electronics, "New", 699.99, 0.0), Product("iPhone 11 Pro Max", ProductCategory::Electronics, "New", 999.99, 0.0)};
 
     cout << "Starting Simulation..." << endl;
+
+    products[0].addProduct();
 
     int userType;
     int iterator = 0;

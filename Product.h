@@ -3,6 +3,10 @@
 
 #include <vector>
 #include <string>
+#include <fstream>
+#include <iostream>
+#include <map>
+
 using namespace std;
 
 // Electronics, Furniture, Clothing, Jewelry, Games
@@ -21,7 +25,7 @@ class Product
     static int pid;
     static string oid;
 
-private:
+protected:
     double price;
     double highestBid;
     string prodName;
@@ -54,6 +58,9 @@ public:
 
 class Electronics : public Product
 {
+public:
+    Electronics();
+
 private:
     ProductCategory category = ProductCategory::Electronics;
     string electronicType;
@@ -61,6 +68,9 @@ private:
 
 class Furniture : public Product
 {
+public:
+    Furniture();
+
 private:
     ProductCategory category = ProductCategory::Furniture;
     string furnitureType;
@@ -68,6 +78,9 @@ private:
 
 class Clothing : public Product
 {
+public:
+    Clothing();
+
 private:
     ProductCategory category = ProductCategory::Clothing;
     int size;
@@ -75,6 +88,9 @@ private:
 
 class Jewelry : public Product
 {
+public:
+    Jewelry();
+
 private:
     ProductCategory category = ProductCategory::Jewelry;
     string metal;
@@ -82,6 +98,9 @@ private:
 
 class Games : public Product
 {
+public:
+    Games();
+
 private:
     ProductCategory category = ProductCategory::Games;
     string console;
@@ -89,6 +108,9 @@ private:
 
 class Other : public Product
 {
+public:
+    Other();
+
 private:
     ProductCategory category = ProductCategory::Other;
 };
