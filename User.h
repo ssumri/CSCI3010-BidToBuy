@@ -27,6 +27,9 @@ public:
 
     string getAddress();
     void setAddress(string newaddress);
+    bool messageSend(User &u, string message);
+    void messagesPrint();
+    vector<string> messages;
 
     User();
 
@@ -52,12 +55,11 @@ public:
     void getBuyerOverview();                      // returns a list of items bought by user
     // requires << operator overload for seller and products
     string getUID();
-    bool messageSendBuyer(string sellerName, string message);
-    void messagesPrint();
+
     void notifyBuyer(Product p);
     void addBuyer();
     void printBidHistory();
-    vector<string> messages;
+
     map<string, double> bidHistory;
 
 private:
@@ -81,10 +83,8 @@ public:
     // requires << operator overload for seller and products
     vector<Product> getProducts();
     string getUID();
-    bool messageSendSeller(string buyerName, string message);
-    void messagesPrint();
+
     void addSeller();
-    vector<string> messages;
 
     // define operator overload for == in terms of products
 

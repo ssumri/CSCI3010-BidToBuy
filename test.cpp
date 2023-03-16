@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Product.h"
 #include "User.h"
+#include "Driver.h"
 
 int Buyer::uid;
 int Seller::uid;
@@ -13,6 +14,8 @@ string Product::oid;
 using namespace std;
 int main()
 {
+    Driver &drver = Driver::GetInstance();
+    drver.setInitialProducts();
 
     Seller s = Seller(true, "John");
     Buyer b = Buyer(false, "Jane");

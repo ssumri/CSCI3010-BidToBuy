@@ -51,6 +51,58 @@ string User::getAddress()
     return address;
 }
 
+bool User::messageSend(User &u, string message)
+{
+    bool sender = getIsSeller();
+    bool receiver = u.getIsSeller();
+    string x, y;
+
+    if (sender == true)
+    {
+
+        x = "Seller";
+    }
+    else
+    {
+        x = "Buyer";
+    }
+
+    if (receiver == true)
+    {
+
+        y = "Seller";
+    }
+    else
+    {
+        y = "Buyer";
+    }
+
+    if (x == y)
+    {
+        return false;
+    }
+
+    string add = x + " " + getName() + " sent " + y + " " + u.getName() + " a message: " + message;
+    this->messages.push_back(add);
+    if (this->messages[this->messages.size() - 1] == add)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void User::messagesPrint()
+{
+    cout << "Messages: " << endl;
+    for (int i = 0; i < this->messages.size(); i++)
+    {
+        cout << this->messages[i] << endl;
+    }
+}
+
 // ______________________ BUYER STUFF ______________________
 
 class Seller;
@@ -102,20 +154,6 @@ string Buyer::getUID()
     return buyerID;
 }
 
-bool Buyer::messageSendBuyer(string sellerName, string message)
-{
-    string add = "Buyer " + sellerName + " sent you a message: " + message;
-    this->messages.push_back(add);
-    if (this->messages[this->messages.size() - 1] == add)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
 void Buyer::addBuyer()
 {
     ofstream outFile;
@@ -127,15 +165,6 @@ void Buyer::addBuyer()
     else
     {
         cout << "Cannot open file" << endl;
-    }
-}
-
-void Buyer::messagesPrint()
-{
-    cout << "Messages: " << endl;
-    for (int i = 0; i < this->messages.size(); i++)
-    {
-        cout << this->messages[i] << endl;
     }
 }
 
@@ -196,29 +225,6 @@ vector<Product> Seller::getProducts()
 string Seller::getUID()
 {
     return sellerID;
-}
-
-bool Seller::messageSendSeller(string buyerName, string message)
-{
-    string add = "Seller " + buyerName + " sent you a message: " + message;
-    this->messages.push_back(add);
-    if (this->messages[this->messages.size() - 1] == add)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-void Seller::messagesPrint()
-{
-    cout << "Messages: " << endl;
-    for (int i = 0; i < this->messages.size(); i++)
-    {
-        cout << this->messages[i] << endl;
-    }
 }
 
 void Buyer::notifyBuyer(Product p)

@@ -17,6 +17,9 @@
         "string_view": "cpp",
         "unordered_map": "cpp",
         "vector": "cpp",
-        "iosfwd": "cpp"
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "__bit_reference": "cpp",
+        "filesystem": "cpp"
     }
 }

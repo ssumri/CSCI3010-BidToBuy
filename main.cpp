@@ -4,7 +4,7 @@
 
 #include "Product.h"
 #include "User.h"
-#include "Driver.h"
+// #include "Driver.h"
 
 using namespace std;
 
@@ -19,7 +19,7 @@ string Product::oid;
 TODO:
 - reimplement driver with helper functions /maybe/
 - finish product category functions in product.cpp // think DONE
-- << operator overload for Product Category
+- << operator overload for Product Category // nah
 - CSV files - in progress
     - writing to userInfo csv file DONE
     - editing data inside csv file
@@ -28,77 +28,18 @@ TODO:
     - map that each product has. stores string as key and double as value(userID, bid)
 - UI
     - edit personal information
-    - choose between buyer and seller
-    - allow buyer to decide on how much bid to place.
+    - choose between buyer and seller DONE
+    - allow buyer to decide on how much bid to place. DONE
 - Messaging between users
     - notify buyer when bid is won - coded not sure if it works
     - notify seller when buyer wants to buy the item
 */
 
-// ProductCategory stringToCategory(string s)
-// {
-//     if (s == "Clothing")
-//     {
-//         return ProductCategory::Clothing;
-//     }
-//     if (s == "Electronics")
-//     {
-//         return ProductCategory::Electronics;
-//     }
-//     if (s == "Furniture")
-//     {
-//         return ProductCategory::Furniture;
-//     }
-//     if (s == "Games")
-//     {
-//         return ProductCategory::Games;
-//     }
-//     if (s == "Jewelry")
-//     {
-//         return ProductCategory::Jewelry;
-//     }
-//     else
-//     {
-//         return ProductCategory::Other;
-//     }
-// }
-
-// string categoryToString(ProductCategory c)
-// {
-//     if (c == ProductCategory::Clothing)
-//     {
-//         return "Clothing";
-//     }
-//     if (c == ProductCategory::Electronics)
-//     {
-//         return "Electronics";
-//     }
-//     if (c == ProductCategory::Furniture)
-//     {
-//         return "Furniture";
-//     }
-//     if (c == ProductCategory::Games)
-//     {
-//         return "Games";
-//     }
-//     if (c == ProductCategory::Jewelry)
-//     {
-//         return "Jewelry";
-//     }
-//     if (c == ProductCategory::Other)
-//     {
-//         return "Other";
-//     }
-//     else
-//     {
-//         return "Invalid Product Category Type.";
-//     }
-// }
-
-void updateInformation(Buyer b)
+void updateInformation(User b)
 {
     string newName;
-    while (true)
+    bool exit = false;
+    while (!exit)
     {
         cout << "What would you like to update?" << endl;
         cout << "1. Name" << endl;
@@ -108,16 +49,17 @@ void updateInformation(Buyer b)
 
         int update;
         cin >> update;
+        cin.ignore();
 
         switch (update)
         {
         case 1:
         {
             cout << "Enter new name" << endl;
-            getline(cin, newName); // try cin >> newName; ?? not sure if it works
-                                   // run it when ready
-            b.setName(newName);
+            getline(cin, newName); // run it when ready
 
+            b.setName(newName);
+            cin.ignore();
             cout << "Name has been updated" << endl;
             break;
         }
@@ -127,8 +69,8 @@ void updateInformation(Buyer b)
 
             cout << "Enter new valid phoneNumber" << endl;
             cin >> newPhoneNum;
-
             b.setPhoneNumber(newPhoneNum);
+            cin.ignore();
             break;
         }
         case 3:
@@ -137,24 +79,31 @@ void updateInformation(Buyer b)
             cout << "Enter new valid address" << endl;
             getline(cin, newAddress);
             b.setAddress(newAddress);
+            cin.ignore();
             break;
         }
         case 4:
         {
             cout << "Going back..." << endl;
+            exit = true;
             break;
         }
         default:
         {
-            cout << "invalid input. Try agan." << endl;
+            cout << "invalid input." << endl;
             break;
         }
         }
     }
+    return;
 }
 
 int main()
 {
+    // Driver &drver = Driver::GetInstance();
+    // drver.setInitialProducts();
+    // drver.setInitialUsers();
+
     vector<Seller> sellers = {Seller(true, "SuperSeller23"), Seller(true, "BargainHunter87"), Seller(true, "Collectibles_Galore"), Seller(true, "Fashionista101"), Seller(true, "TechDeals247"), Seller(true, "RetroGames4U"), Seller(true, "LuxuryWatchesOnly"), Seller(true, "AntiqueTreasuresShop"), Seller(true, "PetLoverParadise"), Seller(true, "SportsMemorabiliaHQ")};
     vector<Buyer> buyers = {Buyer(false, "SmartShopper123"), Buyer(false, "BargainFinder"), Buyer(false, "Shopaholic22"), Buyer(false, "SeriousBuyer"), Buyer(false, "FrequentBuyer55"), Buyer(false, "DealHunter99"), Buyer(false, "LuxuryBuyer123"), Buyer(false, "BestOfferMaker"), Buyer(false, "VintageCollector"), Buyer(false, "ImpulseBuyer")};
 
@@ -190,7 +139,7 @@ int main()
             {
                 cout << "What would you like to do? Pick one." << endl;
                 cout << "1. View products for sale." << endl;
-                cout << "2. Check messages." << endl;
+                cout << "2. Check/send messages." << endl;
                 cout << "3. Check account balance." << endl;
                 cout << "4. Update personal information." << endl;
                 cout << "5. View previous bids." << endl;
@@ -226,13 +175,27 @@ int main()
                         Product p = products[productChoice - 1];
                         bool x = b.addBidToProduct(p, bidAmount);
                         p.productDetails();
-                        break;
                     }
+                    break;
                 }
                 case 2:
                 {
-                    cout << "Checking messages." << endl;
-                    b.messagesPrint();
+                    cout << "Press 1 to send a message, 0 to check messages" << endl;
+                    cin >> userType;
+                    cin.ignore();
+                    if (userType == 1)
+                    {
+                        Seller s = sellers[iterator];
+                        cout << "Enter message to send to " << s.getName() << endl;
+                        string message;
+                        getline(cin, message);
+                        b.messageSend(s, message);
+                        cin.ignore();
+                    }
+                    else if (userType == 0)
+                    {
+                        b.messagesPrint();
+                    }
                     break;
                 }
                 case 3:
@@ -248,11 +211,12 @@ int main()
                 case 5:
                 {
                     cout << "Viewing previous bids." << endl;
+                    b.printBidHistory();
                     break;
                 }
                 case 6:
                 {
-                    cout << "Viewing previous pruchases." << endl;
+                    cout << "Viewing previous purchases." << endl;
                     break;
                 }
                 default:
@@ -327,18 +291,25 @@ int main()
                 }
                 case 2:
                 {
+                    break;
                 }
                 case 3:
                 {
+                    cout << "Account Balance: " << s.getBalance() << endl;
+                    break;
                 }
                 case 4:
                 {
+                    updateInformation(s);
+                    break;
                 }
                 case 5:
                 {
+                    break;
                 }
                 case 6:
                 {
+                    break;
                 }
                 }
 
@@ -352,14 +323,4 @@ int main()
             cout << "Invalid input. Please try again." << endl;
         }
     }
-
-    // Driver d = new Driver();
-    // Driver &d = Driver::GetInstance();
-    // Product p = new Product(1.4, 2.5, "nam");
-    // cout << p.getProductName() << endl;
-    // Seller s = Seller(true,"Sami");
-    // // cout << s.getName() << endl;
-    // cout << s.getName() << endl;
-    // User u;
-    // u.setName("Rahul");
 };
