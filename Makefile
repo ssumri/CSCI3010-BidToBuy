@@ -12,8 +12,8 @@ clean:
 main: main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp -o main
 
-# Driver.o: Driver.cpp
-# 	$(CXX) $(CXXFLAGS) -c Driver.cpp -o Driver.o
+Driver.o: Driver.cpp
+	$(CXX) $(CXXFLAGS) -c Driver.cpp -o Driver.o
 
 Product.o: Product.cpp
 	$(CXX) $(CXXFLAGS) -c Product.cpp -o Product.o
