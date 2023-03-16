@@ -10,7 +10,7 @@ clean:
 	rm -f main *.o
 
 main: main.cpp
-	$(CXX) $(CXXFLAGS) main.cpp -o main
+	$(CXX) $(CXXFLAGS) main.cpp Driver.cpp Product.cpp User.cpp -o main
 
 Driver.o: Driver.cpp
 	$(CXX) $(CXXFLAGS) -c Driver.cpp -o Driver.o
