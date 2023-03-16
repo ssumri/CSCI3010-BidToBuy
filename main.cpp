@@ -4,7 +4,7 @@
 
 #include "Product.h"
 #include "User.h"
-// #include "Driver.h"
+#include "Driver.h"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ int Buyer::uid;
 int Seller::uid;
 int Product::pid;
 string Product::oid;
+map<string, Product> Product::productMap;
 
 // 3/15/2023 1:02 update: you can now move on the next seller, and adding a single product works without asking for another product
 
@@ -100,9 +101,9 @@ void updateInformation(User b)
 
 int main()
 {
-    // Driver &drver = Driver::GetInstance();
-    // drver.setInitialProducts();
-    // drver.setInitialUsers();
+    Driver &drver = Driver::GetInstance();
+    drver.setInitialProducts();
+    drver.setInitialUsers();
 
     vector<Seller> sellers = {Seller(true, "SuperSeller23"), Seller(true, "BargainHunter87"), Seller(true, "Collectibles_Galore"), Seller(true, "Fashionista101"), Seller(true, "TechDeals247"), Seller(true, "RetroGames4U"), Seller(true, "LuxuryWatchesOnly"), Seller(true, "AntiqueTreasuresShop"), Seller(true, "PetLoverParadise"), Seller(true, "SportsMemorabiliaHQ")};
     vector<Buyer> buyers = {Buyer(false, "SmartShopper123"), Buyer(false, "BargainFinder"), Buyer(false, "Shopaholic22"), Buyer(false, "SeriousBuyer"), Buyer(false, "FrequentBuyer55"), Buyer(false, "DealHunter99"), Buyer(false, "LuxuryBuyer123"), Buyer(false, "BestOfferMaker"), Buyer(false, "VintageCollector"), Buyer(false, "ImpulseBuyer")};
@@ -126,6 +127,8 @@ int main()
         cout << "- Enter 2 for Seller" << endl;
         cin >> userType;
 
+        bool inInterface = true;
+
         // loop for Buyer
         if (userType == 1)
         {
@@ -135,7 +138,8 @@ int main()
             b.getBuyerOverview();
 
             // options menu. buyer interface goes here
-            while (true)
+
+            while (inInterface)
             {
                 cout << "What would you like to do? Pick one." << endl;
                 cout << "1. View products for sale." << endl;
@@ -144,12 +148,18 @@ int main()
                 cout << "4. Update personal information." << endl;
                 cout << "5. View previous bids." << endl;
                 cout << "6. View previous purchases. " << endl;
+                cout << "0: Select Buyer or Seller" << endl;
 
                 int choice;
                 cin >> choice;
 
                 switch (choice)
                 {
+                case 0:
+                {
+                    inInterface = false;
+                    break;
+                }
                 case 1:
                 {
                     cout << "Viewing products." << endl;
@@ -232,7 +242,7 @@ int main()
             cout << "Displaying seller overview of " << s.getName() << endl;
             s.getSellerOverview();
 
-            while (true)
+            while (inInterface)
             {
                 cout << "What would you like to do? Pick one." << endl;
                 cout << "1. List products for sale." << endl;
@@ -241,12 +251,18 @@ int main()
                 cout << "4. Update personal information." << endl;
                 cout << "5. View previous inventory." << endl;
                 cout << "6. Open/Close bidding. " << endl;
+                cout << "0: Select Buyer or Seller" << endl;
 
                 int userChoice;
                 cin >> userChoice;
 
                 switch (userChoice)
                 {
+                case 0:
+                {
+                    inInterface = false;
+                    break;
+                }
                 case 1:
                 {
                     while (true)
@@ -291,6 +307,22 @@ int main()
                 }
                 case 2:
                 {
+                    cout << "Press 1 to send a message, 0 to check messages" << endl;
+                    cin >> userType;
+                    cin.ignore();
+                    if (userType == 1)
+                    {
+                        Buyer b = buyers[iterator];
+                        cout << "Enter message to send to " << b.getName() << endl;
+                        string message;
+                        getline(cin, message);
+                        s.messageSend(b, message);
+                        cin.ignore();
+                    }
+                    else if (userType == 0)
+                    {
+                        s.messagesPrint();
+                    }
                     break;
                 }
                 case 3:
@@ -305,10 +337,28 @@ int main()
                 }
                 case 5:
                 {
+                    cout << "Viewing previous inventory." << endl;
+
                     break;
                 }
                 case 6:
                 {
+                    cout << "Viewing current inventory. " << endl;
+                    vector<Product> prods = s.getProducts();
+
+                    for (int i = 0; i < prods.size(); i++)
+                    {
+                        cout << "Product " << i << ": " << endl;
+                        cout << "Name: " << prods[i].getProductName() << endl;
+                        cout << "Price: " << prods[i].getProductPrice() << endl;
+                    }
+
+                    cout << "Pick object to close bidding on" << endl;
+                    int choice;
+                    cin >> choice;
+                    Product p = prods[choice];
+                    s.closedAuction(p);
+                    s.removeProductForSale(p);
                     break;
                 }
                 }

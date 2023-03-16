@@ -40,21 +40,34 @@ public:
     Product();
     Product(string prodName, ProductCategory category_, string cond_, double price_, double highestb_);
     // ~Product(); // not sure why we would need this
-    double getCurrentBid();        // returns the current highest bid for this product
-    bool setCurrentBid(double nb); // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
-    double getProductPrice();      // returns the price of the product
-    string getProductName();       // returns the name of the product
+    double getCurrentBid();                       // returns the current highest bid for this product
+    bool setCurrentBid(double nb, string userID); // sets a bid for this product, if the bid is higher than the current bid, the current bid is updated
+    double getProductPrice();                     // returns the price of the product
+    string getProductName();                      // returns the name of the product
     void setProductCategory(ProductCategory category_);
     void setNewOwner(int userID);
     static string getOID();
     static int getPID();
     void setOID(string oid_);
     bool getOpen();
+    void setOpen(bool open_);
     string getCondition();
+    // int getProdID();
 
     void addProduct();
 
     string productDetails();
+
+    // string is userid, product is product
+    static map<string, Product> productMap;
+    void printMap();
+
+    void addToMap(string id, Product &p);
+
+    // B12, apple
+    // store apple as temp
+    // erase products["B12"]
+    // products["B15"] = temp
 };
 
 class Electronics : public Product

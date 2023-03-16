@@ -1,9 +1,9 @@
 Userid,name,isSeller,address,phoneNumber
-1,true,123 Main St,1234
-2,false,456 Oak Ave,5678
-3,true,789 Elm Rd,9012
-4,false,555 Maple Ln,3456
-5,true,777 Cherry Blvd,7890
+S1,jennieSeller,1,123 Main St,1234
+B2,AustinBuyer,0,456 Oak Ave,5678
+S3,sceliaSeller,1,789 Elm Rd,9012
+B4,carsonBuyer,0,555 Maple Ln,3456
+S5,farranSeller,1,777 Cherry Blvd,7890
 S1,SuperSeller23,1,,1383959632
 B1,SmartShopper123,0,,1383963336
 S1,SuperSeller23,1,,1383959632

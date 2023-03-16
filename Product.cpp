@@ -3,12 +3,15 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
+#include <map>
+#include <string>
+
 using namespace std;
 
-// paratemerzed constructor for product class
+// parameterized constructor for product class
 Product::Product(string prodName_, ProductCategory category_, string cond_, double price_, double highestb_)
 {
-    // incrememnts the static pid everytime a new product is created.
+    // increments the static pid everytime a new product is created.
     productID = ++this->pid;
     prodName = prodName_;
     category = category_;
@@ -17,12 +20,13 @@ Product::Product(string prodName_, ProductCategory category_, string cond_, doub
     highestBid = highestb_;
     open = true;
     onHold = false;
+    // init
 }
 
 // default constructor for Product class
 Product::Product()
 {
-    // incrememnts the static pid everytime a new product is created.
+    // increments the static pid everytime a new product is created.
     productID = ++this->pid;
     prodName = "";
     category = ProductCategory::Other;
@@ -31,30 +35,60 @@ Product::Product()
     highestBid = 0.0;
     open = true;
     onHold = false;
+    // init
 }
-
-// sets initial products in the stock to
 
 string Product::getCondition()
 {
-    return condition;
+    return condition; // return condition
+}
+
+string catToStr(ProductCategory c)
+{
+    if (c == ProductCategory::Clothing)
+    {
+        return "Clothing";
+    }
+    if (c == ProductCategory::Electronics)
+    {
+        return "Electronics";
+    }
+    if (c == ProductCategory::Furniture)
+    {
+        return "Furniture";
+    }
+    if (c == ProductCategory::Games)
+    {
+        return "Games";
+    }
+    if (c == ProductCategory::Jewelry)
+    {
+        return "Jewelry";
+    }
+    if (c == ProductCategory::Other)
+    {
+        return "Other";
+    }
+    else
+    {
+        return "Invalid Product Category Type.";
+    }
 }
 
 void Product::addProduct()
 {
-    ofstream outFile;
+    ofstream outFile; // create output file stream
     outFile.open("productBid.csv", std::ios::app);
     if (!outFile.fail())
     {
-        outFile << "875,3.54,9.00,ring,new,1,Jewelry" << endl;
-        // outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << category << endl;
+        outFile << productID << "," << price << "," << highestBid << "," << prodName << "," << condition << "," << ownerID << catToStr(category) << endl; // write to file
     }
     else
     {
-        cout << "Cannot open file" << endl;
+        cout << "Cannot open file" << endl; // file could not open
     }
-    open = true;
-    onHold = false;
+    open = true;    // product is open for sale
+    onHold = false; // product cannot be on hold when it is first created
 }
 
 string Product::productDetails()
@@ -70,71 +104,91 @@ string Product::productDetails()
     cout << "Product Open: " << getOpen() << endl;
     cout << "Product On Hold: " << onHold << endl;
     return output;
+    // printing out the product details
 }
 
 double Product::getCurrentBid()
 {
-    return highestBid;
+    return highestBid; // return highest bid
+}
+// productMap.emplace(userID, Product("orange", ProductCategory::Other, "New", 2.0, 0.0));
+void Product::addToMap(string id, Product &p)
+{
+    productMap.emplace(id, p); // add product to map
 }
 
-bool Product::setCurrentBid(double nb)
+bool Product::setCurrentBid(double nb, string userID)
 {
     if (open == true && onHold == false)
     {
         highestBid = nb;
-        cout << "Bid placed successfully." << endl;
+        cout << "Bid placed successfully." << endl; // bid placed successfully
         return true;
     }
     else if (open == true && onHold == true)
     {
-        cout << "This product is on hold. You cannot bid on it." << endl;
+        cout << "This product is on hold. You cannot bid on it." << endl; // product is on hold
         return false;
     }
     else
     {
-        cout << "This product is closed. You cannot bid on it." << endl;
+        cout << "This product is closed. You cannot bid on it." << endl; // product is closed
         return false;
     }
 }
 
 bool Product::getOpen()
 {
-    return open;
+    return open; // return open/closed
+}
+
+void Product::setOpen(bool open_)
+{
+    open = open_; // set open/closed
 }
 
 void Product::setOID(string oid_)
 {
-    oid = oid_;
+    oid = oid_; // set owner ID
 }
 
 double Product::getProductPrice()
 {
-    return price;
+    return price; // return price
 }
 
 string Product::getProductName()
 {
-    return prodName;
+    return prodName; // return product name
 }
 
 void Product::setProductCategory(ProductCategory category_)
 {
-    category = category_;
+    category = category_; // set product category
 }
 
 void Product::setNewOwner(int userID)
 {
-    ownerID = userID;
+    ownerID = userID; // set new owner ID
 }
 
 string Product::getOID()
 {
-    return oid;
+    return oid; // return owner ID
 }
 int Product::getPID()
 {
-    return pid;
+    return pid; // return product ID
 }
+
+void Product::printMap() // print map
+{
+    for (auto it = productMap.begin(); it != productMap.end(); ++it)
+    {
+        cout << it->first << " => " << it->second.getProductName() << '\n';
+    }
+}
+
 // used to
 // define all the category of products sellers can sell on this app. You may
 // add as many categories you like. There should be at least enough of them to

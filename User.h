@@ -17,8 +17,10 @@ class User
 
 public:
     // void setIsSeller(); // false for buyer true for setter
-    bool getIsSeller();           // false for buyer true for setter
-    int getUserId();              // returns user id
+    bool getIsSeller(); // false for buyer true for setter
+    void setIsSeller(bool issel);
+    int getUserId(); // returns user id
+    void setUserID(int id);
     void setName(string n);       // updates name of user
     string getName();             // returns name of user
     void setPhoneNumber(int num); // updates number of user
@@ -60,6 +62,8 @@ public:
     void addBuyer();
     void printBidHistory();
 
+    bool wantsToBuyProduct(Product &p);
+
     map<string, double> bidHistory;
 
 private:
@@ -76,14 +80,15 @@ class Seller : public User
 
 public:
     Seller(bool sellerorbuyer, string name_);
-    void addProductForSale(Product p); // adds a product to the seller's list of products
-    double getBalance();               // returns the balance of the seller
-    void getSellerOverview();          // returns a list of products for sale
+    void addProductForSale(Product &p);    // adds a product to the seller's list of products
+    void removeProductForSale(Product &p); // removes a product from the seller's list of products
+    double getBalance();                   // returns the balance of the seller
+    void getSellerOverview();              // returns a list of products for sale
 
     // requires << operator overload for seller and products
     vector<Product> getProducts();
     string getUID();
-
+    void closedAuction(Product &p);
     void addSeller();
 
     // define operator overload for == in terms of products

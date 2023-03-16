@@ -20,6 +20,10 @@
         "iosfwd": "cpp",
         "istream": "cpp",
         "__bit_reference": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "__locale": "c",
+        "locale": "c",
+        "type_traits": "cpp",
+        "functional": "cpp"
     }
 }
