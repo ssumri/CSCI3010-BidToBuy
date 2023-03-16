@@ -1,0 +1,228 @@
+Starting Simulation...
+Choose a role: 
+- Enter 1 for Buyer
+- Enter 2 for Seller
+1
+Displaying buyer overview of SmartShopper123
+Insert Buyer Overview here
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+0
+Choose a role: 
+- Enter 1 for Buyer
+- Enter 2 for Seller
+1
+Displaying buyer overview of SmartShopper123
+Insert Buyer Overview here
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+1
+Viewing products.
+Product 1: 
+Product ID: 14
+Product Name: iPhone 12 Pro Max
+Product Category: other
+Product Condition: New
+Product Price: 999.99
+Product Highest Bid: 0
+Product Open: 1
+Product On Hold: 0
+
+Product 2: 
+Product ID: 14
+Product Name: iPhone 12 Pro
+Product Category: other
+Product Condition: New
+Product Price: 999.99
+Product Highest Bid: 0
+Product Open: 1
+Product On Hold: 0
+
+Product 3: 
+Product ID: 14
+Product Name: iPhone 12
+Product Category: other
+Product Condition: New
+Product Price: 799.99
+Product Highest Bid: 0
+Product Open: 1
+Product On Hold: 0
+
+Product 4: 
+Product ID: 14
+Product Name: iPhone 12 Mini
+Product Category: other
+Product Condition: New
+Product Price: 699.99
+Product Highest Bid: 0
+Product Open: 1
+Product On Hold: 0
+
+Product 5: 
+Product ID: 14
+Product Name: iPhone 11 Pro Max
+Product Category: other
+Product Condition: New
+Product Price: 999.99
+Product Highest Bid: 0
+Product Open: 1
+Product On Hold: 0
+
+Press 1 to bid on a product, 0 to continue to next buyer
+1
+Which product would you like to bid on?
+3
+How much would you like to bid?
+500.00
+Bid placed successfully.
+Your bid has been placed
+Your current balance is now: 500
+Product ID: 14
+Product Name: iPhone 12
+Product Category: other
+Product Condition: New
+Product Price: 799.99
+Product Highest Bid: 500
+Product Open: 1
+Product On Hold: 0
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+2
+Press 1 to send a message, 0 to check messages
+0
+Messages: 
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+3
+Balance: 500
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+4
+What would you like to update?
+1. Name
+2. Phone Number
+3. address
+4. exit
+1
+Enter new name
+sam
+
+Name has been updated
+What would you like to update?
+1. Name
+2. Phone Number
+3. address
+4. exit
+4
+Going back...
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+5
+Viewing previous bids.
+Bid History: 
+Product Name: iPhone 12| Bid amount: 500
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+6
+Viewing previous purchases.
+What would you like to do? Pick one.
+1. View products for sale.
+2. Check/send messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous bids.
+6. View previous purchases. 
+0: Select Buyer or Seller
+0
+Choose a role: 
+- Enter 1 for Buyer
+- Enter 2 for Seller
+2
+Displaying seller overview of SuperSeller23
+Seller Overview
+Name: SuperSeller23
+Phone Number: 219102368
+Balance: 0
+Products for Sale: 
+What would you like to do? Pick one.
+1. List products for sale.
+2. Check messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous inventory.
+6. Open/Close bidding. 
+0: Select Buyer or Seller
+1
+Displaying seller overview of BargainHunter87
+Seller Overview
+Name: BargainHunter87
+Phone Number: 0
+Balance: 0
+Products for Sale: 
+Press 1 to add a product for sale, 0 to continue to next seller
+1
+Enter product name: 
+iphonex
+Enter product category: 
+Electronics
+Enter product condition: 
+new
+Enter product price: 
+99.99
+Press 1 to send a message, 0 to check messages
+1
+Enter message to send to BargainFinder
+hey bargins. find any good bargins?
+
+Press 1 to add a product for sale, 0 to continue to next seller
+0
+What would you like to do? Pick one.
+1. List products for sale.
+2. Check messages.
+3. Check account balance.
+4. Update personal information.
+5. View previous inventory.
+6. Open/Close bidding. 
+0: Select Buyer or Seller
